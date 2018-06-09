@@ -53,3 +53,6 @@ cp package.json publish/package.json
 
 echo 'Copying README.md'
 cp README.md publish/README.md
+
+echo 'Copying less'
+node ./scripts/generate-style.js

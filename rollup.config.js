@@ -37,12 +37,12 @@ switch (target) {
 }
 
 export default {
-  exports: "named",
-  name: "NgxSimplemde",
   plugins,
   external: Object.keys(globals),
-  globals,
   output: {
+    exports: "named",
+    name: "NgxSimplemde",
+    globals,
     sourcemap: true
   }
 };
