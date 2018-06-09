@@ -44,19 +44,44 @@ export class SimplemdeComponent
   private onTouched: () => void;
 
   @Input() options: any;
+  /** 风格，默认：`antd` */
+  @Input() style: 'default' | 'antd';
+  /** 延迟初始化 */
+  @Input() delay: number;
 
   constructor(
     private cog: SimplemdeConfig,
     private cd: ChangeDetectorRef,
     private zone: NgZone,
-  ) {}
+  ) {
+    this.style = cog.style;
+    this.delay = cog.delay || 0;
+  }
+
+  private initDelay() {
+    if (this.delay > 0) {
+      setTimeout(() => this.init(), this.delay);
+    } else {
+      this.init();
+    }
+  }
 
   private init() {
     if (typeof SimpleMDE === 'undefined') {
       throw new Error(`Could not find SimpleMDE object.`);
     }
     this.destroy();
-    const config = { ...this.cog, ...this.options };
+    const config = Object.assign(
+      {},
+      this.cog,
+      this.options,
+      this.style === 'antd'
+        ? {
+            spellChecker: false,
+            autoDownloadFontAwesome: false,
+          }
+        : {},
+    );
     config.element = this.con.nativeElement;
     this.zone.runOutsideAngular(() => {
       this.instance = new SimpleMDE(config);
@@ -78,13 +103,13 @@ export class SimplemdeComponent
   }
 
   ngAfterViewInit(): void {
-    this.init();
+    this.initDelay();
   }
 
   ngOnChanges(
     changes: { [P in keyof this]?: SimpleChange } & SimpleChanges,
   ): void {
-    if (!changes.options.firstChange) this.init();
+    if (!changes.options.firstChange) this.initDelay();
   }
 
   /**
@@ -102,7 +127,7 @@ export class SimplemdeComponent
 
   // reuse-tab: http://ng-alain.com/components/reuse-tab#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F
   _onReuseInit() {
-    this.init();
+    this.initDelay();
   }
 
   writeValue(value: string): void {

@@ -1,6 +1,6 @@
 # ngx-simplemde
 
-Angular for [simplemde](https://simplemde.com/).
+Angular for [simplemde](https://simplemde.com/), better use [ng-zorro-antd](https://ng.ant.design/) components.
 
 [![NPM version](https://img.shields.io/npm/v/ngx-simplemde.svg)](https://www.npmjs.com/package/ngx-simplemde)
 [![Build Status](https://travis-ci.org/cipchk/ngx-simplemde.svg?branch=master)](https://travis-ci.org/cipchk/ngx-simplemde)
@@ -31,23 +31,16 @@ import { SimplemdeModule } from 'ngx-simplemde';
 export class AppModule { }
 ```
 
-3. Add `simplemde.min.js` to `angular.json`.
+3. Add `simplemde-antd.min.js` and styles to `angular.json`.
 
 ```
 "styles": [
-  "node_modules/simplemde/dist/simplemde.min.css",
+  "node_modules/ngx-simplemde/src/index.css",
   "src/styles.css"
 ],
 "scripts": [
-  "node_modules/simplemde/dist/simplemde.min.js"
+  "node_modules/simplemde-antd/dist/simplemde.min.js"
 ]
-```
-
-or using cdn in `index.html`.
-
-```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
-<script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
 ```
 
 4. Happy coding.

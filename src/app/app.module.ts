@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-import { HighlightJsModule } from 'ngx-highlight-js';
+import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { SimplemdeModule } from 'ngx-simplemde';
 
 import { AppComponent } from './app.component';
@@ -15,9 +15,9 @@ import { AppComponent } from './app.component';
     FormsModule,
     CommonModule,
     HttpClientModule,
-    HighlightJsModule,
 
     SimplemdeModule.forRoot({}),
+    NgZorroAntdModule.forRoot()
   ],
   declarations: [AppComponent],
   bootstrap: [AppComponent],

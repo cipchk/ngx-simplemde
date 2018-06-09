@@ -19,6 +19,8 @@ You can also choose to hide the statusbar and/or toolbar for a simple and clean 
     },
   };
 
+  isVisible = false;
+
   constructor(private http: HttpClient) {
     http
       .get('./assets/demo.md', { responseType: 'text' })

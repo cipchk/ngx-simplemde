@@ -18,10 +18,11 @@
             "polyfills": "src/polyfills.ts",
             "assets": ["src/assets"],
             "styles": [
-              "node_modules/simplemde/dist/simplemde.min.css",
+              "node_modules/ng-zorro-antd/src/ng-zorro-antd.css",
+              "lib/index.less",
               "src/styles.less"
             ],
-            "scripts": ["node_modules/simplemde/dist/simplemde.min.js"]
+            "scripts": ["node_modules/simplemde-antd/dist/simplemde.min.js"]
           },
           "configurations": {
             "production": {
