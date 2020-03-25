@@ -4,11 +4,7 @@ import {
   forwardRef,
   ElementRef,
   OnDestroy,
-  EventEmitter,
-  Output,
-  OnInit,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   AfterViewInit,
   OnChanges,
   SimpleChanges,
@@ -18,13 +14,15 @@ import {
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
-import { SimplemdeConfig } from './config';
+import { SimplemdeConfig, SimplemdeOptions } from './config';
 
 declare const SimpleMDE: any;
 
 @Component({
   selector: 'simplemde',
-  template: `<textarea #con></textarea>`,
+  template: `
+    <textarea #con></textarea>
+  `,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -41,19 +39,28 @@ export class SimplemdeComponent
   private value: string;
 
   private onChange: (value: string) => void;
-  private onTouched: () => void;
 
-  @Input() options: any;
+  @Input() options: SimplemdeOptions;
   /** 风格，默认：`antd` */
   @Input() style: 'default' | 'antd';
   /** 延迟初始化 */
   @Input() delay: number;
+  @Input() disabled: boolean;
 
-  constructor(
-    private cog: SimplemdeConfig,
-    private cd: ChangeDetectorRef,
-    private zone: NgZone,
-  ) {
+  get Instance(): any {
+    return this.instance;
+  }
+
+  /**
+   * Call [setOption](https://codemirror.net/doc/manual.html#setOption) method of Codemirror.
+   */
+  setOptions(option: string, value: any): void {
+    if (!this.instance) return ;
+    this.instance.codemirror.setOption(option, value);
+  }
+
+  constructor(private cog: SimplemdeConfig, private zone: NgZone) {
+    cog = { ...new SimplemdeConfig(), ...cog };
     this.style = cog.style;
     this.delay = cog.delay || 0;
   }
@@ -92,6 +99,7 @@ export class SimplemdeComponent
         this.value = this.instance.value();
         this.zone.run(() => this.onChange(this.value));
       });
+      this.setDisable();
     });
   }
 
@@ -102,6 +110,14 @@ export class SimplemdeComponent
     }
   }
 
+  private setDisable() {
+    if (this.instance) {
+      this.zone.runOutsideAngular(
+        () => (this.instance.codemirror.options.readOnly = this.disabled),
+      );
+    }
+  }
+
   ngAfterViewInit(): void {
     this.initDelay();
   }
@@ -109,25 +125,11 @@ export class SimplemdeComponent
   ngOnChanges(
     changes: { [P in keyof this]?: SimpleChange } & SimpleChanges,
   ): void {
-    if (!changes.options.firstChange) this.initDelay();
-  }
-
-  /**
-   * 获取UE实例
-   *
-   * @readonly
-   */
-  get Instance(): any {
-    return this.instance;
+    if (changes.options && !changes.options.firstChange) this.initDelay();
   }
 
   ngOnDestroy() {
     this.destroy();
-  }
-
-  // reuse-tab: http://ng-alain.com/components/reuse-tab#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F
-  _onReuseInit() {
-    this.initDelay();
   }
 
   writeValue(value: string): void {
@@ -140,9 +142,11 @@ export class SimplemdeComponent
   registerOnChange(fn: (_: any) => {}): void {
     this.onChange = fn;
   }
-  registerOnTouched(fn: () => {}): void {
-    this.onTouched = fn;
-  }
 
-  setDisabledState(isDisabled: boolean): void {}
+  registerOnTouched(_fn: () => {}): void {}
+
+  setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
+    this.setDisable();
+  }
 }
