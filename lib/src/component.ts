@@ -20,7 +20,9 @@ declare const SimpleMDE: any;
 
 @Component({
   selector: 'simplemde',
-  template: `<textarea #con></textarea>`,
+  template: `
+    <textarea #con></textarea>
+  `,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -30,7 +32,8 @@ declare const SimpleMDE: any;
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SimplemdeComponent implements AfterViewInit, OnChanges, OnDestroy, ControlValueAccessor {
+export class SimplemdeComponent
+  implements AfterViewInit, OnChanges, OnDestroy, ControlValueAccessor {
   @ViewChild('con') private con: ElementRef;
   private instance: any;
   private value: string;
@@ -42,6 +45,7 @@ export class SimplemdeComponent implements AfterViewInit, OnChanges, OnDestroy, 
   @Input() style: 'default' | 'antd';
   /** 延迟初始化 */
   @Input() delay: number;
+  @Input() disabled: boolean;
 
   constructor(private cog: SimplemdeConfig, private zone: NgZone) {
     cog = { ...new SimplemdeConfig(), ...cog };
@@ -83,6 +87,7 @@ export class SimplemdeComponent implements AfterViewInit, OnChanges, OnDestroy, 
         this.value = this.instance.value();
         this.zone.run(() => this.onChange(this.value));
       });
+      this.setDisable();
     });
   }
 
@@ -93,6 +98,14 @@ export class SimplemdeComponent implements AfterViewInit, OnChanges, OnDestroy, 
     }
   }
 
+  private setDisable() {
+    if (this.instance) {
+      this.zone.runOutsideAngular(
+        () => (this.instance.codemirror.options.readOnly = this.disabled),
+      );
+    }
+  }
+
   ngAfterViewInit(): void {
     this.initDelay();
   }
@@ -100,7 +113,7 @@ export class SimplemdeComponent implements AfterViewInit, OnChanges, OnDestroy, 
   ngOnChanges(
     changes: { [P in keyof this]?: SimpleChange } & SimpleChanges,
   ): void {
-    if (!changes.options.firstChange) this.initDelay();
+    if (changes.options && !changes.options.firstChange) this.initDelay();
   }
 
   /**
@@ -131,8 +144,11 @@ export class SimplemdeComponent implements AfterViewInit, OnChanges, OnDestroy, 
   registerOnChange(fn: (_: any) => {}): void {
     this.onChange = fn;
   }
-  registerOnTouched(fn: () => {}): void {
-  }
 
-  setDisabledState(isDisabled: boolean): void {}
+  registerOnTouched(_fn: () => {}): void {}
+
+  setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
+    this.setDisable();
+  }
 }

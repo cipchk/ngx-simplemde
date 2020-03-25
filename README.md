@@ -46,7 +46,7 @@ export class AppModule { }
 4. Happy coding.
 
 ```html
-<simplemde [(ngModel)]="demo"></simplemde>
+<simplemde [(ngModel)]="demo" [disabled]="false"></simplemde>
 <simplemde [(ngModel)]="customize" [options]="{ toolbar: ['bold', 'italic', 'heading', '|', 'quote'] }"></simplemde>
 ```
 
