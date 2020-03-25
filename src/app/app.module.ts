@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { SimplemdeModule } from 'ngx-simplemde';
@@ -15,9 +16,9 @@ import { AppComponent } from './app.component';
     FormsModule,
     CommonModule,
     HttpClientModule,
-
+    BrowserAnimationsModule,
     SimplemdeModule.forRoot({}),
-    NgZorroAntdModule.forRoot()
+    NgZorroAntdModule,
   ],
   declarations: [AppComponent],
   bootstrap: [AppComponent],

@@ -35,7 +35,7 @@ export class AppModule { }
 
 ```
 "styles": [
-  "node_modules/ngx-simplemde/src/index.css",
+  "node_modules/ngx-simplemde/lib/index.less",
   "src/styles.css"
 ],
 "scripts": [

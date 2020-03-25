@@ -4,11 +4,7 @@ import {
   forwardRef,
   ElementRef,
   OnDestroy,
-  EventEmitter,
-  Output,
-  OnInit,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   AfterViewInit,
   OnChanges,
   SimpleChanges,
@@ -34,14 +30,12 @@ declare const SimpleMDE: any;
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SimplemdeComponent
-  implements AfterViewInit, OnChanges, OnDestroy, ControlValueAccessor {
+export class SimplemdeComponent implements AfterViewInit, OnChanges, OnDestroy, ControlValueAccessor {
   @ViewChild('con') private con: ElementRef;
   private instance: any;
   private value: string;
 
   private onChange: (value: string) => void;
-  private onTouched: () => void;
 
   @Input() options: any;
   /** 风格，默认：`antd` */
@@ -49,11 +43,8 @@ export class SimplemdeComponent
   /** 延迟初始化 */
   @Input() delay: number;
 
-  constructor(
-    private cog: SimplemdeConfig,
-    private cd: ChangeDetectorRef,
-    private zone: NgZone,
-  ) {
+  constructor(private cog: SimplemdeConfig, private zone: NgZone) {
+    cog = { ...new SimplemdeConfig(), ...cog };
     this.style = cog.style;
     this.delay = cog.delay || 0;
   }
@@ -141,7 +132,6 @@ export class SimplemdeComponent
     this.onChange = fn;
   }
   registerOnTouched(fn: () => {}): void {
-    this.onTouched = fn;
   }
 
   setDisabledState(isDisabled: boolean): void {}
