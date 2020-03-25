@@ -18,21 +18,21 @@ export interface SimplemdeOptions {
 
   /**
    * Saves the text that's being written and will load it back in the future. It will forget the text when the form it's contained in is submitted.
-   * 
+   *
    * - **enabled**: If set to `true`, autosave the text. Defaults to `false`.
    * - **delay**: Delay between saves, in milliseconds. Defaults to `10000` (10s).
    * - **uniqueId**: You must set a unique string identifier so that SimpleMDE can autosave. Something that separates this from other instances of SimpleMDE elsewhere on your website.
    */
-  autosave?: { enabled?: boolean, uniqueId?: string, delay?: number };
+  autosave?: { enabled?: boolean; uniqueId?: string; delay?: number };
 
   /**
    * Customize how certain buttons that style blocks of text behave.
-   * 
+   *
    * - **bold** Can be set to `**` or `__`. Defaults to `**`.
    * - **code** Can be set to  ```` ``` ```` or `~~~`.  Defaults to ```` ``` ````.
    * - **italic** Can be set to `*` or `_`. Defaults to `*`.
    */
-  blockStyles?: { bold?: string, code?: string, italic?: string };
+  blockStyles?: { bold?: string; code?: string; italic?: string };
 
   /**
    * If set to `true`, force text changes made in SimpleMDE to be immediately stored in original textarea. Defaults to `false`.
@@ -52,7 +52,12 @@ export interface SimplemdeOptions {
   /**
    * Customize how certain buttons that insert text behave. Takes an array with two elements. The first element will be the text inserted before the cursor or highlight, and the second element will be inserted after. For example, this is the default link value: `["[", "](http://)"]`.
    */
-  insertTexts?: { horizontalRule?: string[], image?: string[], link?: string[], table?: string[] };
+  insertTexts?: {
+    horizontalRule?: string[];
+    image?: string[];
+    link?: string[];
+    table?: string[];
+  };
 
   /**
    * Adjust settings for parsing the Markdown during editing (not previewing).
@@ -60,7 +65,11 @@ export interface SimplemdeOptions {
    * - **strikethrough**: If set to `false`, will not process GFM strikethrough syntax. Defaults to `true`.
    * - **underscoresBreakWords**: If set to `true`, let underscores be a delimiter for separating words. Defaults to `false`.
    */
-  parsingConfig?: { allowAtxHeaderWithoutSpace?: boolean; strikethrough?: boolean; underscoresBreakWords?: boolean; };
+  parsingConfig?: {
+    allowAtxHeaderWithoutSpace?: boolean;
+    strikethrough?: boolean;
+    underscoresBreakWords?: boolean;
+  };
 
   /**
    * Custom placeholder that should be displayed
@@ -82,7 +91,10 @@ export interface SimplemdeOptions {
    * - **singleLineBreaks**: If set to `false`, disable parsing GFM single line breaks. Defaults to `true`.
    * - **codeSyntaxHighlighting**: If set to `true`, will highlight using [highlight.js](https://github.com/isagalaev/highlight.js). Defaults to `false`. To use this feature you must include highlight.js on your page. For example, include the script and the CSS files like:<br>`<script src="https://cdn.jsdelivr.net/highlight.js/latest/highlight.min.js"></script>`<br>`<link rel="stylesheet" href="https://cdn.jsdelivr.net/highlight.js/latest/styles/github.min.css">`
    */
-  renderingConfig?: { singleLineBreaks?: boolean, codeSyntaxHighlighting?: boolean };
+  renderingConfig?: {
+    singleLineBreaks?: boolean;
+    codeSyntaxHighlighting?: boolean;
+  };
 
   /**
    * Keyboard shortcuts associated with this instance. Defaults to the [array of shortcuts](https://github.com/sparksuite/simplemde-markdown-editor#keyboard-shortcuts).
