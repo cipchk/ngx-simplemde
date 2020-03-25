@@ -66,17 +66,26 @@ export class AppModule { }
 5. Happy coding.
 
 ```ts
+import { Component, ViewChild, OnInit } from '@angular/core';
+import { SimplemdeComponent, SimplemdeOptions } from 'ngx-simplemde';
+
 @Component({
   selector: 'app-root',
   template: `
   <simplemde [(ngModel)]="demo" [disabled]="false"></simplemde>
-  <simplemde [(ngModel)]="customize" [options]="options"></simplemde>  
+  <simplemde #simplemde [(ngModel)]="customize" [options]="options"></simplemde>  
   `,
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  @ViewChild('simplemde', { static: true }) private readonly simplemde: SimplemdeComponent;
+
   options: SimplemdeOptions = {
     toolbar: ['bold', 'italic', 'heading', '|', 'quote']
   };
+
+  ngOnInit(): void {
+    this.simplemde.setOptions('lineNumbers', true);
+  }  
 }
 ```
 

@@ -1,12 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { SimplemdeComponent } from 'ngx-simplemde';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  @ViewChild('simplemde', { static: true }) private readonly simplemde: SimplemdeComponent;
   demo = '';
   customize = '';
   autoSaving = '';
@@ -35,6 +37,10 @@ You can also choose to hide the statusbar and/or toolbar for a simple and clean 
     this.f = fb.group({
       text: ['', Validators.required],
     });
+  }
+
+  ngOnInit(): void {
+    this.simplemde.setOptions('lineNumbers', true);
   }
 
   onSubmit() {

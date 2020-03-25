@@ -47,6 +47,18 @@ export class SimplemdeComponent
   @Input() delay: number;
   @Input() disabled: boolean;
 
+  get Instance(): any {
+    return this.instance;
+  }
+
+  /**
+   * Call [setOption](https://codemirror.net/doc/manual.html#setOption) method of Codemirror.
+   */
+  setOptions(option: string, value: any): void {
+    if (!this.instance) return ;
+    this.instance.codemirror.setOption(option, value);
+  }
+
   constructor(private cog: SimplemdeConfig, private zone: NgZone) {
     cog = { ...new SimplemdeConfig(), ...cog };
     this.style = cog.style;
@@ -116,22 +128,8 @@ export class SimplemdeComponent
     if (changes.options && !changes.options.firstChange) this.initDelay();
   }
 
-  /**
-   * 获取UE实例
-   *
-   * @readonly
-   */
-  get Instance(): any {
-    return this.instance;
-  }
-
   ngOnDestroy() {
     this.destroy();
-  }
-
-  // reuse-tab: http://ng-alain.com/components/reuse-tab#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F
-  _onReuseInit() {
-    this.initDelay();
   }
 
   writeValue(value: string): void {
