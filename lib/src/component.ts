@@ -14,7 +14,7 @@ import {
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
-import { SimplemdeConfig } from './config';
+import { SimplemdeConfig, SimplemdeOptions } from './config';
 
 declare const SimpleMDE: any;
 
@@ -40,7 +40,7 @@ export class SimplemdeComponent
 
   private onChange: (value: string) => void;
 
-  @Input() options: any;
+  @Input() options: SimplemdeOptions;
   /** 风格，默认：`antd` */
   @Input() style: 'default' | 'antd';
   /** 延迟初始化 */

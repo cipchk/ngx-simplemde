@@ -29,7 +29,6 @@
             ],
             "styles": [
               "node_modules/ng-zorro-antd/src/ng-zorro-antd.css",
-              "lib/index.less",
               "src/styles.less"
             ],
             "scripts": [
