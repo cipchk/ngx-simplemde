@@ -1,7 +1,11 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, DebugElement } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
-
+import {
+  ComponentFixture,
+  TestBed,
+  fakeAsync,
+  tick,
+} from '@angular/core/testing';
 import { SimplemdeModule } from './module';
 import { SimplemdeComponent } from './component';
 import { By } from '@angular/platform-browser';
@@ -44,7 +48,7 @@ describe('Component: ngx-simplemde', () => {
   });
 
   class PageObject {
-    getEl(cls: string) {
+    getEl(cls: string): DebugElement {
       return fixture.debugElement.query(By.css(cls));
     }
     checkCount(cls: string = '.CodeMirror', num: number = 1): this {
@@ -62,5 +66,5 @@ class TestNGComponent {
   @ViewChild('comp') comp: SimplemdeComponent;
   value: string;
   options: any;
-  change(str: string) {}
+  change(_: string): void {}
 }
