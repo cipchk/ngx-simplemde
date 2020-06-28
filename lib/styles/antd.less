@@ -7,25 +7,22 @@
   padding: 10px;
   font: inherit;
   z-index: 1;
-}
-
-.CodeMirror-scroll {
-  min-height: @simplemde-min-height;
-}
-
-.CodeMirror-fullscreen {
-  background: #fff;
-  position: fixed !important;
-  top: 50px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: auto;
-  z-index: @simplemde-zindex;
-}
-
-.CodeMirror-sided {
-  width: 50% !important;
+  &-scroll {
+    min-height: @simplemde-min-height;
+  }
+  &-fullscreen {
+    background: #fff;
+    position: fixed !important;
+    top: 50px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: auto;
+    z-index: @simplemde-zindex;
+  }
+  &-sided {
+    width: 50% !important;
+  }
 }
 
 .editor-toolbar {
