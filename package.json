@@ -40,7 +40,9 @@
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3",
-    "simplemde-antd": "^1.0.0"
+    "simplemde-antd": "^1.0.0",
+    "ngx-highlight-js": "^10.0.0",
+    "ng-zorro-antd": "^9.0.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1000.0",
@@ -64,8 +66,6 @@
     "tslint-config-prettier": "^1.18.0",
     "prettier": "^2.0.5",
     "codecov": "^3.5.0",
-    "ng-packagr": "^10.0.0",
-    "ngx-highlight-js": "^10.0.0",
-    "ng-zorro-antd": "^9.0.0"
+    "ng-packagr": "^10.0.0"
   }
 }
