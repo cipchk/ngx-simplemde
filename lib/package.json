@@ -1,6 +1,6 @@
 {
   "name": "ngx-simplemde",
-  "version": "9.0.0",
+  "version": "10.0.0",
   "description": "Angular for simplemde",
   "keywords": [
     "embeddable",
@@ -14,7 +14,7 @@
     "components",
     "typescript"
   ],
-  "author": "cipchk <cipchk>",
+  "author": "cipchk <cipchk@qq.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/cipchk/ngx-simplemde/issues"
