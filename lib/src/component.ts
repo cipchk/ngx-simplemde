@@ -89,7 +89,7 @@ export class SimplemdeComponent
       throw new Error(`Could not find SimpleMDE object.`);
     }
     this.destroy();
-    const config: any = {
+    const config: SimplemdeOptions = {
       ...this.cog,
       ...this.options,
       ...(this.style === 'antd'
