@@ -1,0 +1,26 @@
+{
+  "name": "ngx-simplemde",
+  "version": "10.0.0",
+  "description": "Angular for simplemde",
+  "keywords": [
+    "embeddable",
+    "markdown",
+    "editor",
+    "javascript",
+    "wysiwyg",
+    "ngx-simplemde",
+    "simplemde",
+    "angular",
+    "components",
+    "typescript"
+  ],
+  "author": "cipchk <cipchk@qq.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cipchk/ngx-simplemde/issues"
+  },
+  "homepage": "https://cipchk.github.io/ngx-simplemde/",
+  "dependencies": {
+    "simplemde-antd": "^1.0.0"
+  }
+}

@@ -28,7 +28,9 @@ import { SimplemdeModule } from 'ngx-simplemde';
     BrowserModule,
     SimplemdeModule.forRoot({
       // Global options
-      autosave: { enabled: true, uniqueId: 'MyUniqueID' }
+      options: {
+        autosave: { enabled: true, uniqueId: 'MyUniqueID' },
+      },
     })
   ],
   declarations: [AppComponent],
