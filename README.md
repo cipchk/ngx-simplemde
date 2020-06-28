@@ -3,7 +3,7 @@
 Angular for [simplemde](https://simplemde.com/), better use [ng-zorro-antd](https://ng.ant.design/) components.
 
 [![NPM version](https://img.shields.io/npm/v/ngx-simplemde.svg)](https://www.npmjs.com/package/ngx-simplemde)
-[![Build Status](https://travis-ci.org/cipchk/ngx-simplemde.svg?branch=master)](https://travis-ci.org/cipchk/ngx-simplemde)
+![Ci](https://github.com/cipchk/ngx-simplemde/workflows/Ci/badge.svg)
 
 ## Usage & Demo
 
