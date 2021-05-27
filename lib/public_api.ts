@@ -1,3 +1,3 @@
-export { SimplemdeComponent } from './src/component';
-export { SimplemdeConfig } from './src/config';
+export * from './src/component';
+export * from './src/config';
 export * from './src/module';
