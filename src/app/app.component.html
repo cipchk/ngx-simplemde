@@ -10,7 +10,9 @@
 <h1>Hidden toolbar and status bar</h1>
 <simplemde [(ngModel)]="hiddenToolbar" [options]="{ toolbar: false, status: false }"></simplemde>
 <nz-modal [(nzVisible)]="isVisible" nzWidth="800" nzTitle="The first Modal" (nzOnCancel)="isVisible = false" (nzOnOk)="isVisible = false">
-  <simplemde [(ngModel)]="demo"></simplemde>
+  <ng-container *nzModalContent>
+    <simplemde [(ngModel)]="demo"></simplemde>
+  </ng-container>
 </nz-modal>
 <h1>Reactive forms</h1>
 <form [formGroup]="f" (ngSubmit)="onSubmit()">
