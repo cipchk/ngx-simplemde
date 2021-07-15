@@ -5,7 +5,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 import { SimplemdeModule } from 'ngx-simplemde';
 
 import { AppComponent } from './app.component';
@@ -19,7 +20,8 @@ import { AppComponent } from './app.component';
     HttpClientModule,
     BrowserAnimationsModule,
     SimplemdeModule.forRoot({}),
-    NgZorroAntdModule,
+    NzButtonModule,
+    NzModalModule,
   ],
   declarations: [AppComponent],
   bootstrap: [AppComponent],

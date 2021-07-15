@@ -6,5 +6,5 @@
     "entryFile": "index.ts"
   },
   "assets": ["styles", "index.less"],
-  "whitelistedNonPeerDependencies": ["tslib", "angular", "simplemde-antd"]
+  "allowedNonPeerDependencies": ["tslib", "angular", "simplemde-antd"]
 }
