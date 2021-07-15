@@ -1,11 +1,6 @@
 import { Component, ViewChild, DebugElement } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import {
-  ComponentFixture,
-  TestBed,
-  fakeAsync,
-  tick,
-} from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { SimplemdeModule } from './module';
 import { SimplemdeComponent } from './component';
 import { By } from '@angular/platform-browser';
@@ -59,12 +54,11 @@ describe('Component: ngx-simplemde', () => {
 });
 
 @Component({
-  template:
-    '<simplemde #comp [(ngModel)]="value" (ngModelChange)="change($event)" [options]="options"></simplemde>',
+  template: '<simplemde #comp [(ngModel)]="value" (ngModelChange)="change($event)" [options]="options"></simplemde>',
 })
 class TestNGComponent {
-  @ViewChild('comp') comp: SimplemdeComponent;
-  value: string;
+  @ViewChild('comp') comp!: SimplemdeComponent;
+  value: string = '';
   options: any;
   change(_: string): void {}
 }
