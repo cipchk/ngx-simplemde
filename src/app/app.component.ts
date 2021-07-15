@@ -8,7 +8,7 @@ import { SimplemdeComponent } from 'ngx-simplemde';
   templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit {
-  @ViewChild('simplemde', { static: true }) private readonly simplemde: SimplemdeComponent;
+  @ViewChild('simplemde', { static: true }) private readonly simplemde!: SimplemdeComponent;
   demo = '';
   customize = '';
   autoSaving = '';
@@ -27,12 +27,8 @@ You can also choose to hide the statusbar and/or toolbar for a simple and clean 
   f: FormGroup;
 
   constructor(http: HttpClient, fb: FormBuilder) {
-    http
-      .get('./assets/demo.md', { responseType: 'text' })
-      .subscribe(res => (this.demo = res));
-    http
-      .get('./assets/autoSaving.md', { responseType: 'text' })
-      .subscribe(res => (this.autoSaving = res));
+    http.get('./assets/demo.md', { responseType: 'text' }).subscribe((res) => (this.demo = res));
+    http.get('./assets/autoSaving.md', { responseType: 'text' }).subscribe((res) => (this.autoSaving = res));
 
     this.f = fb.group({
       text: ['', Validators.required],

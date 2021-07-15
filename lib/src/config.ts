@@ -130,7 +130,7 @@ export interface SimplemdeOptions {
   /**
    * If set to `false`, hide the toolbar. Defaults to the [array of icons](#toolbar-icons).
    */
-  toolbar?: boolean;
+  toolbar?: boolean | string[] | null;
 
   /**
    * If set to `false`, disable toolbar button tips. Defaults to `true`.

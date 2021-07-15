@@ -29,20 +29,19 @@ import { DOCUMENT } from '@angular/common';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SimplemdeComponent
-  implements AfterViewInit, OnChanges, OnDestroy, ControlValueAccessor {
-  @ViewChild('con') private con: ElementRef<HTMLElement>;
+export class SimplemdeComponent implements AfterViewInit, OnChanges, OnDestroy, ControlValueAccessor {
+  @ViewChild('con') private con!: ElementRef<HTMLElement>;
   private instance: any;
-  private value: string;
+  private value: string = '';
 
-  private onChange: (value: string) => void;
+  private onChange!: (value: string) => void;
 
-  @Input() options: SimplemdeOptions;
+  @Input() options: SimplemdeOptions = {};
   /** 风格，默认：`antd` */
-  @Input() style: 'default' | 'antd';
+  @Input() style?: 'default' | 'antd';
   /** 延迟初始化 */
   @Input() delay: number;
-  @Input() disabled: boolean;
+  @Input() disabled: boolean = false;
 
   get Instance(): any {
     return this.instance;
@@ -62,11 +61,7 @@ export class SimplemdeComponent
     return this.doc.defaultView || window;
   }
 
-  constructor(
-    private cog: SimplemdeConfig,
-    private zone: NgZone,
-    @Inject(DOCUMENT) private doc: any,
-  ) {
+  constructor(private cog: SimplemdeConfig, private zone: NgZone, @Inject(DOCUMENT) private doc: any) {
     cog = { ...new SimplemdeConfig(), ...cog };
     this.style = cog.style;
     this.delay = cog.delay || 0;
@@ -122,9 +117,7 @@ export class SimplemdeComponent
 
   private setDisable(): void {
     if (this.instance) {
-      this.zone.runOutsideAngular(
-        () => (this.instance.codemirror.options.readOnly = this.disabled),
-      );
+      this.zone.runOutsideAngular(() => (this.instance.codemirror.options.readOnly = this.disabled));
     }
   }
 
@@ -132,9 +125,7 @@ export class SimplemdeComponent
     this.initDelay();
   }
 
-  ngOnChanges(
-    changes: { [P in keyof this]?: SimpleChange } & SimpleChanges,
-  ): void {
+  ngOnChanges(changes: { [P in keyof this]?: SimpleChange } & SimpleChanges): void {
     if (changes.options && !changes.options.firstChange) {
       this.initDelay();
     }

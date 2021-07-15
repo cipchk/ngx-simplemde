@@ -1,31 +1,15 @@
-<h1>
-  ngx-simplemde
-</h1>
+<h1>ngx-simplemde</h1>
 <p class="mt-3 mb-3">Angular for simplemde</p>
 <h1>Demo</h1>
-<button (click)="isVisible = true" nz-button nzType="primary">
-  Open in modal
-</button>
+<button (click)="isVisible = true" nz-button nzType="primary">Open in modal</button>
 <simplemde #simplemde [(ngModel)]="demo"></simplemde>
 <h1>Customize toolbar</h1>
-<simplemde
-  [(ngModel)]="customize"
-  [options]="{ toolbar: ['bold', 'italic', 'heading', '|', 'quote'] }"
-></simplemde>
+<simplemde [(ngModel)]="customize" [options]="{ toolbar: ['bold', 'italic', 'heading', '|', 'quote'] }"></simplemde>
 <h1>Autosaving</h1>
 <simplemde [(ngModel)]="autoSaving" [options]="autoSavingOptions"></simplemde>
 <h1>Hidden toolbar and status bar</h1>
-<simplemde
-  [(ngModel)]="hiddenToolbar"
-  [options]="{ toolbar: false, status: false }"
-></simplemde>
-<nz-modal
-  [(nzVisible)]="isVisible"
-  nzWidth="800"
-  nzTitle="The first Modal"
-  (nzOnCancel)="isVisible = false"
-  (nzOnOk)="isVisible = false"
->
+<simplemde [(ngModel)]="hiddenToolbar" [options]="{ toolbar: false, status: false }"></simplemde>
+<nz-modal [(nzVisible)]="isVisible" nzWidth="800" nzTitle="The first Modal" (nzOnCancel)="isVisible = false" (nzOnOk)="isVisible = false">
   <simplemde [(ngModel)]="demo"></simplemde>
 </nz-modal>
 <h1>Reactive forms</h1>

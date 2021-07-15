@@ -30,8 +30,12 @@
               "src/assets"
             ],
             "inlineStyleLanguage": "less",
-            "styles": [],
-            "scripts": []
+            "styles": [
+              "src/styles.less"
+            ],
+            "scripts": [
+              "node_modules/simplemde-antd/dist/simplemde.min.js"
+            ]
           },
           "configurations": {
             "production": {
