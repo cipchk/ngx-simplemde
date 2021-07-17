@@ -1,3 +1,5 @@
+# I recommend using [Vditor](https://github.com/Vanessa219/vditor) instead of `simplemde`, About angular version for [@ng-util/markdown](https://github.com/ng-util/ng-util/blob/master/packages/markdown/README.md)
+
 # ngx-simplemde
 
 Angular for [simplemde](https://simplemde.com/), better use [ng-zorro-antd](https://ng.ant.design/) components.
